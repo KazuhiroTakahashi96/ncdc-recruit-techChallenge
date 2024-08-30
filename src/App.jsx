@@ -1,7 +1,13 @@
+import Content from "./features/Content";
+import NavBar from "./features/NavBar";
+
 function App() {
   return (
     <>
-      <div>環境構築</div>
+      <div className="font-main flex h-screen">
+        <NavBar />
+        <Content />
+      </div>
     </>
   );
 }
