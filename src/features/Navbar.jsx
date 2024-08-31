@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import Logo from "../components/icons/Logo";
 import Button from "../components/Button";
 import Edit from "../components/icons/Edit";
@@ -14,10 +16,14 @@ const NavBar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      console.log(data);
-      setLists(data);
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        setLists(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchData();
   }, []);
@@ -80,9 +86,19 @@ const NavBar = () => {
         </div>
         <ul className="w-60 h-[882px] ml-10">
           {lists.map((list) => (
-            <li
+            <NavLink
+              to={`/${list.id}`}
               key={list.id}
-              className="flex items-center justify-between h-11 py-2.5 pl-2.5 hover:bg-bg-light hover:rounded text-[#333333] hover:text-[#32a8f8] hover:font-bold"
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  "flex items-center justify-between h-11 py-2.5 pl-2.5 text-[#333333] cursor-auto",
+                  isPending ? "" : "",
+                  isActive
+                    ? "bg-bg-light rounded  text-[#32a8f8] font-bold"
+                    : "",
+                  isTransitioning ? "" : "",
+                ].join(" ")
+              }
             >
               <p className="h-6 cursor-pointer">{list.title}</p>
               {isDeletable && (
@@ -93,7 +109,7 @@ const NavBar = () => {
                   <Delete />
                 </div>
               )}
-            </li>
+            </NavLink>
           ))}
         </ul>
         <div className="h-[60px] w-[280px] flex items-center bg-bg-light py-2.5 pr-2.5 pl-10">

@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import Button from "../components/Button";
 import Edit from "../components/icons/Edit";
 
 const Content = () => {
+  const API_URL = "http://localhost:3000/content";
+  const { id } = useParams();
+
+  const [content, setContent] = useState({});
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const res = await fetch(`${API_URL}/${id}`);
+      const data = await res.json();
+
+      setContent(data);
+    };
+    fetchContent();
+  }, [id]);
+
   return (
     <>
       <div className="h-full w-full px-10 pt-[30px]">
@@ -9,7 +27,7 @@ const Content = () => {
           <div className="w-full">
             <div className="flex items-center justify-start">
               <div className="w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal">
-                坊ちゃん
+                {content.title}
               </div>
               <div className="pl-5 pb-5">
                 <Button>
@@ -25,7 +43,7 @@ const Content = () => {
 
             <div className="flex items-start">
               <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg">
-                main contents/sentences.
+                {content.body}
               </div>
               <div className="pb-5 pl-5">
                 <Button>
