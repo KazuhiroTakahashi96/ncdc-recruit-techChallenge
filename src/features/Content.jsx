@@ -3,22 +3,62 @@ import { useParams } from "react-router-dom";
 
 import Button from "../components/Button";
 import Edit from "../components/icons/Edit";
+import Cancel from "../components/icons/Cancel";
+import Save from "../components/icons/Save";
 
 const Content = () => {
   const API_URL = "http://localhost:3000/content";
   const { id } = useParams();
 
   const [content, setContent] = useState({});
+  const [isEditableTitle, setIsEditableTitle] = useState(false);
+  const [isEditableContent, setIsEditableContent] = useState(false);
 
   useEffect(() => {
     const fetchContent = async () => {
-      const res = await fetch(`${API_URL}/${id}`);
-      const data = await res.json();
+      try {
+        const res = await fetch(`${API_URL}/${id}`);
+        const data = await res.json();
 
-      setContent(data);
+        setContent(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchContent();
   }, [id]);
+
+  // Titleの編集関連
+  const onClickEditTitle = () => {
+    setIsEditableTitle(true);
+  };
+  const onClickCancelTitle = () => {
+    setIsEditableTitle(false);
+  };
+  const onClickSaveTitle = async () => {
+    try {
+      // const res = await fetch(`${API_URL}`);
+
+      setIsEditableTitle(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Contentの編集関連
+  const onClickEditContent = () => {
+    setIsEditableContent(true);
+  };
+  const onClickCancelContent = () => {
+    setIsEditableContent(false);
+  };
+  const onClickSaveContent = () => {
+    try {
+      setIsEditableContent(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -30,14 +70,40 @@ const Content = () => {
                 {content.title}
               </div>
               <div className="pl-5 pb-5">
-                <Button>
-                  <div className="bg-main w-[90px] h-10 flex flex-col items-center rounded">
-                    <Edit />
-                    <p className="h-2.5 text-white text-xs text-[#ffffff]">
-                      Edit
-                    </p>
+                {isEditableTitle ? (
+                  <div className="flex items-center justify-center gap-[10px]">
+                    <Button>
+                      <div
+                        onClick={onClickCancelTitle}
+                        className="bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                      >
+                        <Cancel />
+                        <p className="text-[10px] text-[#ffffff]">Cancel</p>
+                      </div>
+                    </Button>
+                    <Button>
+                      <div
+                        onClick={onClickSaveTitle}
+                        className="bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
+                      >
+                        <Save />
+                        <p className="text-[10px] text-[#ffffff]">Save</p>
+                      </div>
+                    </Button>
                   </div>
-                </Button>
+                ) : (
+                  <Button>
+                    <div
+                      onClick={onClickEditTitle}
+                      className="bg-main w-[90px] h-10 flex flex-col items-center rounded"
+                    >
+                      <Edit />
+                      <p className="h-2.5 text-white text-xs text-[#ffffff]">
+                        Edit
+                      </p>
+                    </div>
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -46,14 +112,40 @@ const Content = () => {
                 {content.body}
               </div>
               <div className="pb-5 pl-5">
-                <Button>
-                  <div className="bg-main w-[90px] h-10 flex flex-col items-center rounded">
-                    <Edit />
-                    <p className="h-2.5 text-white text-xs text-[#ffffff]">
-                      Edit
-                    </p>
+                {isEditableContent ? (
+                  <div className="flex items-center justify-center gap-[10px]">
+                    <Button>
+                      <div
+                        onClick={onClickCancelContent}
+                        className="bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                      >
+                        <Cancel />
+                        <p className="text-[10px] text-[#ffffff]">Cancel</p>
+                      </div>
+                    </Button>
+                    <Button>
+                      <div
+                        onClick={onClickSaveContent}
+                        className="bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
+                      >
+                        <Save />
+                        <p className="text-[10px] text-[#ffffff]">Save</p>
+                      </div>
+                    </Button>
                   </div>
-                </Button>
+                ) : (
+                  <Button>
+                    <div
+                      onClick={onClickEditContent}
+                      className="bg-main w-[90px] h-10 flex flex-col items-center rounded"
+                    >
+                      <Edit />
+                      <p className="h-2.5 text-white text-xs text-[#ffffff]">
+                        Edit
+                      </p>
+                    </div>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
