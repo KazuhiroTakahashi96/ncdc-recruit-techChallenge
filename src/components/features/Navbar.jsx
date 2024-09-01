@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useContentStore } from "../../store/content";
 
 import Logo from "../icons/Logo";
 import Button from "../common/Button";
@@ -9,24 +10,14 @@ import Plus from "../icons/Plus";
 import Done from "../icons/Done";
 
 const NavBar = () => {
-  const API_URL = "http://localhost:3000/content";
-  const [lists, setLists] = useState([]);
   const [isDeletable, setIsDeletable] = useState(false);
   const [isCreatable, setIsCreatable] = useState(false);
+  const { contents, fetchContents, createContent, deleteContent } =
+    useContentStore();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
-
-        setLists(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+    fetchContents();
+  }, [fetchContents]);
 
   const onClickEditNavbar = () => {
     setIsDeletable(!isDeletable);
@@ -39,38 +30,11 @@ const NavBar = () => {
   };
 
   const onClickDelete = async (id) => {
-    try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-      console.log(res);
-
-      const newLists = [...lists].filter((list) => list.id !== id);
-      setLists(newLists);
-    } catch (error) {
-      console.error(error);
-    }
+    deleteContent(id);
   };
 
   const onClickCreateNewPage = async () => {
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: "タイトル",
-          body: "コンテンツ",
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-
-      setLists((prev) => [...prev, data]);
-    } catch (error) {
-      console.error(error);
-    }
+    createContent();
   };
 
   return (
@@ -85,7 +49,7 @@ const NavBar = () => {
           </div>
         </div>
         <ul className="w-60 h-[882px] ml-10">
-          {lists.map((list) => (
+          {contents.map((list) => (
             <NavLink
               to={`/${list.id}`}
               key={list.id}

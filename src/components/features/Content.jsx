@@ -7,6 +7,7 @@ import Cancel from "../icons/Cancel";
 import Save from "../icons/Save";
 import Input from "../common/Input";
 import Textarea from "../common/Textarea";
+import { useContentStore } from "../../store/content";
 
 const Content = () => {
   const API_URL = "http://localhost:3000/content";
@@ -16,6 +17,7 @@ const Content = () => {
   const [body, setBody] = useState("");
   const [isEditableTitle, setIsEditableTitle] = useState(false);
   const [isEditableContent, setIsEditableContent] = useState(false);
+  const { updateContent } = useContentStore();
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -41,21 +43,22 @@ const Content = () => {
   };
   const onClickSaveTitle = async () => {
     try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          body,
-        }),
-      });
+      // const res = await fetch(`${API_URL}/${id}`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     title,
+      //     body,
+      //   }),
+      // });
 
-      console.log(res);
-      if (res.ok) {
-        setIsEditableTitle(false);
-      }
+      // console.log(res);
+      // if (res.ok) {
+      // }
+      updateContent(id, title, body);
+      setIsEditableTitle(false);
     } catch (error) {
       console.error(error);
     }
@@ -70,21 +73,22 @@ const Content = () => {
   };
   const onClickSaveContent = async () => {
     try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          body,
-        }),
-      });
+      // const res = await fetch(`${API_URL}/${id}`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     title,
+      //     body,
+      //   }),
+      // });
 
-      console.log(res);
-      if (res.ok) {
-        setIsEditableContent(false);
-      }
+      // console.log(res);
+      // if (res.ok) {
+      // }
+      updateContent(id, title, body);
+      setIsEditableContent(false);
     } catch (error) {
       console.error(error);
     }
@@ -156,11 +160,11 @@ const Content = () => {
                   value={body}
                   updateInput={(e) => setBody(e.target.value)}
                   className={
-                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB]"
+                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB] whitespace-break-spaces"
                   }
                 />
               ) : (
-                <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg">
+                <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg whitespace-break-spaces">
                   {body}
                 </div>
               )}
