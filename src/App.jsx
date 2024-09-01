@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 
-import Content from "./features/Content";
-import NavBar from "./features/NavBar";
+import Content from "./components/features/Content";
+import NavBar from "./components/features/NavBar";
 
 function App() {
   return (
     <>
-      <div className="font-main flex max-h-[1024px] max-w-[1440px]">
+      <div className="font-main flex h-screen w-screen">
         <NavBar />
         <Routes>
           <Route path="/" element={<Content />} />
