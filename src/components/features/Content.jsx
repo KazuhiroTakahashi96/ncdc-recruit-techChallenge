@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Button from "../components/Button";
-import Edit from "../components/icons/Edit";
-import Cancel from "../components/icons/Cancel";
-import Save from "../components/icons/Save";
-import Input from "../components/Input";
-import Textarea from "../components/Textarea";
+import Button from "../common/Button";
+import Edit from "../icons/Edit";
+import Cancel from "../icons/Cancel";
+import Save from "../icons/Save";
+import Input from "../common/Input";
+import Textarea from "../common/Textarea";
 
 const Content = () => {
   const API_URL = "http://localhost:3000/content";
   const { id } = useParams();
 
-  const [content, setContent] = useState({});
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [isEditableTitle, setIsEditableTitle] = useState(false);
@@ -24,7 +23,6 @@ const Content = () => {
         const res = await fetch(`${API_URL}/${id}`);
         const data = await res.json();
 
-        setContent(data);
         setTitle(data.title);
         setBody(data.body);
       } catch (error) {
@@ -94,8 +92,8 @@ const Content = () => {
 
   return (
     <>
-      <div className="h-full w-full px-10 pt-[30px]">
-        <div className="flex h-[935px] w-full p-[30px] bg-bg-light rounded-2xl">
+      <div className="h-screen w-full px-10 pt-[30px]">
+        <div className="flex h-fit w-full p-[30px] bg-bg-light rounded-2xl">
           <div className="w-full">
             <div className="flex items-center justify-start">
               {isEditableTitle ? (
@@ -105,7 +103,7 @@ const Content = () => {
                   value={title}
                   updateInput={(e) => setTitle(e.target.value)}
                   className={
-                    "w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:outline focus:outline-[#347CAB]"
+                    "w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB]"
                   }
                 />
               ) : (
@@ -158,7 +156,7 @@ const Content = () => {
                   value={body}
                   updateInput={(e) => setBody(e.target.value)}
                   className={
-                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:outline focus:outline-[#347CAB]"
+                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB]"
                   }
                 />
               ) : (
@@ -204,8 +202,6 @@ const Content = () => {
               </div>
             </div>
           </div>
-
-          <div></div>
         </div>
 
         <div className="h-[59px] flex items-center justify-between text-xs">

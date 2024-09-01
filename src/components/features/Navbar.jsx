@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import Logo from "../components/icons/Logo";
-import Button from "../components/Button";
-import Edit from "../components/icons/Edit";
-import Delete from "../components/icons/Delete";
-import Plus from "../components/icons/Plus";
-import Done from "../components/icons/Done";
+import Logo from "../icons/Logo";
+import Button from "../common/Button";
+import Edit from "../icons/Edit";
+import Delete from "../icons/Delete";
+import Plus from "../icons/Plus";
+import Done from "../icons/Done";
 
 const NavBar = () => {
   const API_URL = "http://localhost:3000/content";
@@ -39,15 +39,14 @@ const NavBar = () => {
   };
 
   const onClickDelete = async (id) => {
-    console.log(`id: ${id}`);
     try {
       const res = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
       });
-      console.log(await res);
+      console.log(res);
+
+      const newLists = [...lists].filter((list) => list.id !== id);
+      setLists(newLists);
     } catch (error) {
       console.error(error);
     }
@@ -66,6 +65,7 @@ const NavBar = () => {
         }),
       });
       const data = await res.json();
+      console.log(data);
 
       setLists((prev) => [...prev, data]);
     } catch (error) {
