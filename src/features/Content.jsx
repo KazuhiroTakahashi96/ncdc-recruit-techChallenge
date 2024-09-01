@@ -5,12 +5,16 @@ import Button from "../components/Button";
 import Edit from "../components/icons/Edit";
 import Cancel from "../components/icons/Cancel";
 import Save from "../components/icons/Save";
+import Input from "../components/Input";
+import Textarea from "../components/Textarea";
 
 const Content = () => {
   const API_URL = "http://localhost:3000/content";
   const { id } = useParams();
 
   const [content, setContent] = useState({});
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const [isEditableTitle, setIsEditableTitle] = useState(false);
   const [isEditableContent, setIsEditableContent] = useState(false);
 
@@ -21,6 +25,8 @@ const Content = () => {
         const data = await res.json();
 
         setContent(data);
+        setTitle(data.title);
+        setBody(data.body);
       } catch (error) {
         console.error(error);
       }
@@ -37,9 +43,21 @@ const Content = () => {
   };
   const onClickSaveTitle = async () => {
     try {
-      // const res = await fetch(`${API_URL}`);
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          body,
+        }),
+      });
 
-      setIsEditableTitle(false);
+      console.log(res);
+      if (res.ok) {
+        setIsEditableTitle(false);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -52,9 +70,23 @@ const Content = () => {
   const onClickCancelContent = () => {
     setIsEditableContent(false);
   };
-  const onClickSaveContent = () => {
+  const onClickSaveContent = async () => {
     try {
-      setIsEditableContent(false);
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          body,
+        }),
+      });
+
+      console.log(res);
+      if (res.ok) {
+        setIsEditableContent(false);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -66,9 +98,21 @@ const Content = () => {
         <div className="flex h-[935px] w-full p-[30px] bg-bg-light rounded-2xl">
           <div className="w-full">
             <div className="flex items-center justify-start">
-              <div className="w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal">
-                {content.title}
-              </div>
+              {isEditableTitle ? (
+                <Input
+                  type={"text"}
+                  name={title}
+                  value={title}
+                  updateInput={(e) => setTitle(e.target.value)}
+                  className={
+                    "w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:outline focus:outline-[#347CAB]"
+                  }
+                />
+              ) : (
+                <div className="w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal">
+                  {title}
+                </div>
+              )}
               <div className="pl-5 pb-5">
                 {isEditableTitle ? (
                   <div className="flex items-center justify-center gap-[10px]">
@@ -108,9 +152,20 @@ const Content = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg">
-                {content.body}
-              </div>
+              {isEditableContent ? (
+                <Textarea
+                  name={"content"}
+                  value={body}
+                  updateInput={(e) => setBody(e.target.value)}
+                  className={
+                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:outline focus:outline-[#347CAB]"
+                  }
+                />
+              ) : (
+                <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg">
+                  {body}
+                </div>
+              )}
               <div className="pb-5 pl-5">
                 {isEditableContent ? (
                   <div className="flex items-center justify-center gap-[10px]">
