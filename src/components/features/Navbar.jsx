@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContentStore } from "../../store/content";
 
-import Logo from "../icons/Logo";
 import Button from "../common/Button";
+import Logo from "../icons/Logo";
 import Edit from "../icons/Edit";
 import Delete from "../icons/Delete";
 import Plus from "../icons/Plus";
@@ -92,36 +92,39 @@ const NavBar = () => {
           {isCreatable ? (
             <>
               <div className="pr-[50px]">
-                <Button>
-                  <div
-                    onClick={onClickCreateNewPage}
-                    className="bg-[#ffffff] w-[90px] h-10 flex flex-col items-center rounded border-2 border-solid border-main"
-                  >
-                    <Plus />
-                    <p className="text-white text-[10px] text-main">New page</p>
-                  </div>
+                <Button
+                  onClick={onClickCreateNewPage}
+                  className={
+                    "bg-[#ffffff] w-[90px] h-10 flex flex-col items-center rounded border-2 border-solid border-main"
+                  }
+                  label={"New page"}
+                  labelClassName={"text-white text-[10px] text-main"}
+                >
+                  <Plus />
                 </Button>
               </div>
-              <Button>
-                <div
-                  onClick={onClickDone}
-                  className="bg-main w-[90px] h-10 flex flex-col items-center rounded"
-                >
-                  <Done />
-                  <p className="text-white text-[10px] text-[#ffffff]">Done</p>
-                </div>
+              <Button
+                onClick={onClickDone}
+                className={
+                  "bg-main w-[90px] h-10 flex flex-col items-center rounded"
+                }
+                label={"Done"}
+                labelClassName={"text-white text-[10px] text-[#ffffff]"}
+              >
+                <Done />
               </Button>
             </>
           ) : (
             <div className="pl-[140px]">
-              <Button>
-                <div
-                  onClick={onClickEditNavbar}
-                  className="bg-main w-[90px] h-10 flex flex-col items-center rounded"
-                >
-                  <Edit />
-                  <p className="text-white text-[10px] text-[#ffffff]">Edit</p>
-                </div>
+              <Button
+                onClick={onClickEditNavbar}
+                className={
+                  "bg-main w-[90px] h-10 flex flex-col items-center rounded"
+                }
+                label={"Edit"}
+                labelClassName={"text-white text-[10px] text-[#ffffff]"}
+              >
+                <Edit />
               </Button>
             </div>
           )}
