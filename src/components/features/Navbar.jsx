@@ -16,25 +16,37 @@ const NavBar = () => {
     useContentStore();
 
   useEffect(() => {
-    fetchContents();
+    try {
+      fetchContents();
+    } catch (error) {
+      console.error(error);
+    }
   }, [fetchContents]);
 
   const onClickEditNavbar = () => {
-    setIsDeletable(!isDeletable);
-    setIsCreatable(!isCreatable);
+    setIsDeletable(true);
+    setIsCreatable(true);
   };
 
   const onClickDone = () => {
-    setIsDeletable(!isDeletable);
-    setIsCreatable(!isCreatable);
+    setIsDeletable(false);
+    setIsCreatable(false);
   };
 
   const onClickDelete = async (id) => {
-    deleteContent(id);
+    try {
+      deleteContent(id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onClickCreateNewPage = async () => {
-    createContent();
+    try {
+      createContent();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

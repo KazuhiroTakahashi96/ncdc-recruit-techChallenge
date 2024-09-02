@@ -10,7 +10,6 @@ import Textarea from "../common/Textarea";
 import { useContentStore } from "../../store/content";
 
 const Content = () => {
-  const API_URL = "http://localhost:3000/content";
   const { id } = useParams();
 
   const [title, setTitle] = useState("");
@@ -22,7 +21,9 @@ const Content = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await fetch(`${API_URL}/${id}`);
+        const res = await fetch(
+          `${import.meta.env.API_URL || "http://localhost:3000/content"}/${id}`
+        );
         const data = await res.json();
 
         setTitle(data.title);
@@ -43,20 +44,6 @@ const Content = () => {
   };
   const onClickSaveTitle = async () => {
     try {
-      // const res = await fetch(`${API_URL}/${id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     title,
-      //     body,
-      //   }),
-      // });
-
-      // console.log(res);
-      // if (res.ok) {
-      // }
       updateContent(id, title, body);
       setIsEditableTitle(false);
     } catch (error) {
@@ -73,20 +60,6 @@ const Content = () => {
   };
   const onClickSaveContent = async () => {
     try {
-      // const res = await fetch(`${API_URL}/${id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     title,
-      //     body,
-      //   }),
-      // });
-
-      // console.log(res);
-      // if (res.ok) {
-      // }
       updateContent(id, title, body);
       setIsEditableContent(false);
     } catch (error) {
