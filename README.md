@@ -1,8 +1,20 @@
-# React + Vite
+# NCDC フロントエンド技術課題[Markdown Editor]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- 前提：環境変数ファイルを作成（今回は無くても動作する想定で実装してます）
+  - ルートディレクトリに`.env`ファイルを作成
+  - ファイル内に`API_URL=http://localhost:3000/content`と記述して保存
 
-Currently, two official plugins are available:
+```
+// インストール
+npm i
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+// アプリ起動
+npm run dev
+```
+
+### 使用した技術スタック
+
+- React：React(Next.js)メインでフロントエンド開発はされていることと、個人的にこれから使用していきたいライブラリ・フレームワークだったためキャッチアップも兼ねて今回使用した
+- React Router：ルーティングに使用した。（今回の規模？なら無くてもよかったと思う。キャップアップも兼ねて使用した）
+- TailwindCSS：前職で参画していたプロジェクトで使用経験があり、使いやすかったため今回使用した
+- Zustand：タイトルの編集・更新後にサイドバーのタイトルも更新させるにはグローバルステート管理が必要だと思った。そこで、YouTube を使用し MERN スタックで React と Node.js を勉強する中で出会ったこちらを、今回アウトプットも兼ねて使用した
