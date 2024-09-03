@@ -76,111 +76,117 @@ const Content = () => {
           <div className="w-full">
             <div className="flex items-center justify-start">
               {isEditableTitle ? (
-                <Input
-                  type={"text"}
-                  name={title}
-                  value={title}
-                  updateInput={(e) => setTitle(e.target.value)}
-                  className={
-                    "w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB]"
-                  }
-                />
+                <>
+                  <Input
+                    type={"text"}
+                    name={title}
+                    value={title}
+                    updateInput={(e) => setTitle(e.target.value)}
+                    className={
+                      "w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB]"
+                    }
+                  />
+                  <div className="pl-5 pb-5">
+                    <div className="flex items-center justify-center gap-[10px]">
+                      <Button
+                        onClick={onClickCancelTitle}
+                        className={
+                          "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                        }
+                        label={"Cancel"}
+                        labelClassName={"text-[10px] text-[#ffffff]"}
+                      >
+                        <Cancel />
+                      </Button>
+                      <Button
+                        onClick={onClickSaveTitle}
+                        className={
+                          "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
+                        }
+                        label={"Save"}
+                        labelClassName={"text-[10px] text-[#ffffff]"}
+                      >
+                        <Save />
+                      </Button>
+                    </div>
+                  </div>
+                </>
               ) : (
-                <div className="w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal">
-                  {title}
-                </div>
-              )}
-              <div className="pl-5 pb-5">
-                {isEditableTitle ? (
-                  <div className="flex items-center justify-center gap-[10px]">
+                <>
+                  <div className="w-[910px] h-10 px-[30px] mb-5 font-bold text-2xl text-[#333333] leading-10 tracking-normal">
+                    {title}
+                  </div>
+                  <div className="pl-5 pb-5">
                     <Button
-                      onClick={onClickCancelTitle}
+                      onClick={onClickEditTitle}
                       className={
-                        "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                        "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                       }
-                      label={"Cancel"}
-                      labelClassName={"text-[10px] text-[#ffffff]"}
+                      label={"Edit"}
+                      labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
                     >
-                      <Cancel />
-                    </Button>
-                    <Button
-                      onClick={onClickSaveTitle}
-                      className={
-                        "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
-                      }
-                      label={"Save"}
-                      labelClassName={"text-[10px] text-[#ffffff]"}
-                    >
-                      <Save />
+                      <Edit />
                     </Button>
                   </div>
-                ) : (
-                  <Button
-                    onClick={onClickEditTitle}
-                    className={
-                      "bg-main w-[90px] h-10 flex flex-col items-center rounded"
-                    }
-                    label={"Edit"}
-                    labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
-                  >
-                    <Edit />
-                  </Button>
-                )}
-              </div>
+                </>
+              )}
             </div>
 
             <div className="flex items-start">
               {isEditableContent ? (
-                <Textarea
-                  name={"content"}
-                  value={body}
-                  updateInput={(e) => setBody(e.target.value)}
-                  className={
-                    "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB] whitespace-break-spaces"
-                  }
-                />
+                <>
+                  <Textarea
+                    name={"content"}
+                    value={body}
+                    updateInput={(e) => setBody(e.target.value)}
+                    className={
+                      "w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] text-[#333333] tracking-normal border border-solid border-[#4cb3f8] rounded-lg focus:border-[#347CAB] whitespace-break-spaces"
+                    }
+                  />
+                  <div className="pb-5 pl-5">
+                    <div className="flex items-center justify-center gap-[10px]">
+                      <Button
+                        onClick={onClickCancelContent}
+                        className={
+                          "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                        }
+                        label={"Cancel"}
+                        labelClassName={"text-[10px] text-[#ffffff]"}
+                      >
+                        <Cancel />
+                      </Button>
+                      <Button
+                        onClick={onClickSaveContent}
+                        className={
+                          "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
+                        }
+                        label={"Save"}
+                        labelClassName={"text-[10px] text-[#ffffff]"}
+                      >
+                        <Save />
+                      </Button>
+                    </div>
+                  </div>
+                </>
               ) : (
-                <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg whitespace-break-spaces">
-                  {body}
-                </div>
-              )}
-              <div className="pb-5 pl-5">
-                {isEditableContent ? (
-                  <div className="flex items-center justify-center gap-[10px]">
+                <>
+                  <div className="w-[910px] h-[814px] overflow-y-auto pt-[30px] px-[30px] bg-[#ffffff] rounded-lg whitespace-break-spaces">
+                    {body}
+                  </div>
+                  <div className="pb-5 pl-5">
                     <Button
-                      onClick={onClickCancelContent}
+                      onClick={onClickEditContent}
                       className={
-                        "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
+                        "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                       }
-                      label={"Cancel"}
-                      labelClassName={"text-[10px] text-[#ffffff]"}
+                      label={"Edit"}
+                      labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
                     >
-                      <Cancel />
-                    </Button>
-                    <Button
-                      onClick={onClickSaveContent}
-                      className={
-                        "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
-                      }
-                      label={"Save"}
-                      labelClassName={"text-[10px] text-[#ffffff]"}
-                    >
-                      <Save />
+                      <Edit />
                     </Button>
                   </div>
-                ) : (
-                  <Button
-                    onClick={onClickEditContent}
-                    className={
-                      "bg-main w-[90px] h-10 flex flex-col items-center rounded"
-                    }
-                    label={"Edit"}
-                    labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
-                  >
-                    <Edit />
-                  </Button>
-                )}
-              </div>
+                </>
+              )}
             </div>
           </div>
         </div>
