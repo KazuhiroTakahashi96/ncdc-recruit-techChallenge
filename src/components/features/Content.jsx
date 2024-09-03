@@ -5,6 +5,7 @@ import { useContentStore } from "../../store/content";
 import Button from "../common/Button";
 import Input from "../common/Input";
 import Textarea from "../common/Textarea";
+import Footer from "../common/Footer";
 import Edit from "../icons/Edit";
 import Cancel from "../icons/Cancel";
 import Save from "../icons/Save";
@@ -71,8 +72,8 @@ const Content = () => {
 
   return (
     <>
-      <div className="h-screen w-full px-10 pt-[30px]">
-        <div className="flex h-fit w-full p-[30px] bg-bg-light rounded-2xl">
+      <div className="h-full w-full px-10 pt-[30px]">
+        <div className="flex h-full w-full p-[30px] bg-bg-light rounded-2xl">
           <div className="w-full">
             <div className="flex items-center justify-start">
               {isEditableTitle ? (
@@ -191,10 +192,10 @@ const Content = () => {
           </div>
         </div>
 
-        <div className="h-[59px] flex items-center justify-between text-xs">
-          <p>Copyright © 2021 Sample</p>
-          <p>運営会社</p>
-        </div>
+        <Footer
+          copyright={"Copyright © 2021 Sample"}
+          companyName={"運営会社"}
+        />
       </div>
     </>
   );
