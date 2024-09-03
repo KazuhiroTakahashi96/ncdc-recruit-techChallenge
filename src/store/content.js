@@ -47,8 +47,8 @@ export const useContentStore = create((set) => ({
   updateContent: async (id, title, body) => {
     await fetch(
       `${
-        import.meta.env.VITE_API_URL || "http://localhost:3000/content"
-      }/${id}`,
+        import.meta.env.VITE_API_URL || "http://localhost:3000"
+      }/content/${id}`,
       {
         method: "PUT",
         headers: {
