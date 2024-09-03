@@ -95,7 +95,9 @@ const Content = () => {
                           "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
                         }
                         label={"Cancel"}
-                        labelClassName={"text-[10px] text-[#ffffff]"}
+                        labelClassName={
+                          "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                        }
                       >
                         <Cancel />
                       </Button>
@@ -105,7 +107,9 @@ const Content = () => {
                           "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
                         }
                         label={"Save"}
-                        labelClassName={"text-[10px] text-[#ffffff]"}
+                        labelClassName={
+                          "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                        }
                       >
                         <Save />
                       </Button>
@@ -124,7 +128,9 @@ const Content = () => {
                         "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                       }
                       label={"Edit"}
-                      labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
+                      labelClassName={
+                        "h-2.5 text-xs text-[#ffffff] font-bold leading-[10px]"
+                      }
                     >
                       <Edit />
                     </Button>
@@ -152,7 +158,9 @@ const Content = () => {
                           "bg-[#b3b3b3] w-10 h-10 flex flex-col items-center justify-center rounded"
                         }
                         label={"Cancel"}
-                        labelClassName={"text-[10px] text-[#ffffff]"}
+                        labelClassName={
+                          "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                        }
                       >
                         <Cancel />
                       </Button>
@@ -162,7 +170,9 @@ const Content = () => {
                           "bg-main w-10 h-10 flex flex-col items-center justify-center rounded"
                         }
                         label={"Save"}
-                        labelClassName={"text-[10px] text-[#ffffff]"}
+                        labelClassName={
+                          "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                        }
                       >
                         <Save />
                       </Button>
@@ -181,7 +191,9 @@ const Content = () => {
                         "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                       }
                       label={"Edit"}
-                      labelClassName={"h-2.5 text-white text-xs text-[#ffffff]"}
+                      labelClassName={
+                        "h-2.5 text-xs text-[#ffffff] font-bold leading-[10px]"
+                      }
                     >
                       <Edit />
                     </Button>

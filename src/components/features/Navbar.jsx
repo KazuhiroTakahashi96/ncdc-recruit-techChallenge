@@ -111,7 +111,9 @@ const NavBar = () => {
                     "bg-[#ffffff] w-[90px] h-10 flex flex-col items-center rounded border-2 border-solid border-main"
                   }
                   label={"New page"}
-                  labelClassName={"text-white text-[10px] text-main"}
+                  labelClassName={
+                    "text-button-primary text-[10px] font-bold leading-[10px]"
+                  }
                 >
                   <Plus />
                 </Button>
@@ -122,7 +124,9 @@ const NavBar = () => {
                   "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                 }
                 label={"Done"}
-                labelClassName={"text-white text-[10px] text-[#ffffff]"}
+                labelClassName={
+                  "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                }
               >
                 <Done />
               </Button>
@@ -135,7 +139,9 @@ const NavBar = () => {
                   "bg-main w-[90px] h-10 flex flex-col items-center rounded"
                 }
                 label={"Edit"}
-                labelClassName={"text-white text-[10px] text-[#ffffff]"}
+                labelClassName={
+                  "text-[10px] text-[#ffffff] font-bold leading-[10px]"
+                }
               >
                 <Edit />
               </Button>
