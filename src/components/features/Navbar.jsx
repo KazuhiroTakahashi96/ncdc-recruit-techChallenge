@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useContentStore } from "../../store/content";
 
 import Button from "../common/Button";
@@ -10,6 +10,8 @@ import Plus from "../icons/Plus";
 import Done from "../icons/Done";
 
 const NavBar = () => {
+  const { pathname } = useLocation();
+  const id = pathname.split("/")[1];
   const [isDeletable, setIsDeletable] = useState(false);
   const [isCreatable, setIsCreatable] = useState(false);
   const { contents, fetchContents, createContent, deleteContent } =
@@ -62,30 +64,41 @@ const NavBar = () => {
         </div>
         <ul className="w-60 h-[882px] ml-10">
           {contents.map((list) => (
-            <NavLink
-              to={`/${list.id}`}
+            <li
               key={list.id}
-              className={({ isActive, isPending, isTransitioning }) =>
-                [
-                  "flex items-center justify-between h-11 py-2.5 pl-2.5 text-[#333333] cursor-auto",
-                  isPending ? "" : "",
-                  isActive
-                    ? "bg-bg-light rounded  text-[#32a8f8] font-bold"
-                    : "",
-                  isTransitioning ? "" : "",
-                ].join(" ")
+              className={
+                id == list.id // idが数字とアルファベットの両方で構成されている場合等を考慮して==
+                  ? "w-full bg-bg-light rounded text-[#32a8f8] font-bold"
+                  : "w-full text-[#333333]"
               }
             >
-              <p className="h-6 cursor-pointer">{list.title}</p>
-              {isDeletable && (
-                <div
-                  onClick={() => onClickDelete(list.id)}
-                  className="pl-2.5 pr-[9px] cursor-pointer"
+              <div className="flex items-center justify-between h-11 py-2.5 pl-2.5">
+                <NavLink
+                  to={`/${list.id}`}
+                  className={({ isActive, isPending, isTransitioning }) =>
+                    [
+                      "cursor-auto",
+                      isPending ? "" : "",
+                      isActive
+                        ? "bg-bg-light rounded text-[#32a8f8] font-bold"
+                        : "",
+                      isTransitioning ? "" : "",
+                    ].join(" ")
+                  }
                 >
-                  <Delete />
-                </div>
-              )}
-            </NavLink>
+                  <p className="h-6 cursor-pointer">{list.title}</p>
+                </NavLink>
+
+                {isDeletable && (
+                  <Button
+                    onClick={() => onClickDelete(list.id)}
+                    className={"pl-2.5 pr-[9px] cursor-pointer"}
+                  >
+                    <Delete />
+                  </Button>
+                )}
+              </div>
+            </li>
           ))}
         </ul>
         <div className="h-[60px] w-[280px] flex items-center bg-bg-light py-2.5 pr-2.5 pl-10">
