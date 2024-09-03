@@ -22,7 +22,9 @@ const Content = () => {
     const fetchContent = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.API_URL || "http://localhost:3000/content"}/${id}`
+          `${
+            import.meta.env.VITE_API_URL || "http://localhost:3000"
+          }/content/${id}`
         );
         const data = await res.json();
 

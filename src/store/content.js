@@ -4,14 +4,14 @@ export const useContentStore = create((set) => ({
   contents: [],
   fetchContents: async () => {
     const res = await fetch(
-      import.meta.env.API_URL || "http://localhost:3000/content"
+      `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/content`
     );
     const data = await res.json();
     set({ contents: data });
   },
   createContent: async () => {
     const res = await fetch(
-      import.meta.env.API_URL || "http://localhost:3000/content",
+      `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/content`,
       {
         method: "POST",
         headers: {
@@ -29,7 +29,9 @@ export const useContentStore = create((set) => ({
   },
   deleteContent: async (id) => {
     await fetch(
-      `${import.meta.env.API_URL || "http://localhost:3000/content"}/${id}`,
+      `${
+        import.meta.env.VITE_API_URL || "http://localhost:3000"
+      }/content/${id}`,
       {
         method: "DELETE",
       }
@@ -44,7 +46,9 @@ export const useContentStore = create((set) => ({
   },
   updateContent: async (id, title, body) => {
     await fetch(
-      `${import.meta.env.API_URL || "http://localhost:3000/content"}/${id}`,
+      `${
+        import.meta.env.VITE_API_URL || "http://localhost:3000/content"
+      }/${id}`,
       {
         method: "PUT",
         headers: {
