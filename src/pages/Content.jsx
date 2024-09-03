@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useContentStore } from "../../store/content";
+import { useContentStore } from "../store/content";
 
-import Button from "../common/Button";
-import Input from "../common/Input";
-import Textarea from "../common/Textarea";
-import Footer from "../common/Footer";
-import Edit from "../icons/Edit";
-import Cancel from "../icons/Cancel";
-import Save from "../icons/Save";
+import Button from "../components/common/Button";
+import Input from "../components/common/Input";
+import Textarea from "../components/common/Textarea";
+import Footer from "../components/common/Footer";
+import Edit from "../components/icons/Edit";
+import Cancel from "../components/icons/Cancel";
+import Save from "../components/icons/Save";
 
 const Content = () => {
   const { id } = useParams();
@@ -129,7 +129,7 @@ const Content = () => {
                       }
                       label={"Edit"}
                       labelClassName={
-                        "h-2.5 text-xs text-[#ffffff] font-bold leading-[10px]"
+                        "text-[10px] text-[#ffffff] font-bold leading-[10px]"
                       }
                     >
                       <Edit />
@@ -192,7 +192,7 @@ const Content = () => {
                       }
                       label={"Edit"}
                       labelClassName={
-                        "h-2.5 text-xs text-[#ffffff] font-bold leading-[10px]"
+                        "text-[10px] text-[#ffffff] font-bold leading-[10px]"
                       }
                     >
                       <Edit />

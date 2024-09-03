@@ -9,7 +9,7 @@ import Delete from "../icons/Delete";
 import Plus from "../icons/Plus";
 import Done from "../icons/Done";
 
-const NavBar = () => {
+const Navbar = () => {
   const { pathname } = useLocation();
   const id = pathname.split("/")[1];
   const [isDeletable, setIsDeletable] = useState(false);
@@ -153,4 +153,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
