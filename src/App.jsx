@@ -9,7 +9,7 @@ function App() {
       <div className="font-main flex h-screen w-screen">
         <NavBar />
         <Routes>
-          <Route path="/" element={<Content />} />
+          <Route path="/" element={<div className="w-full h-full"></div>} />
           <Route path="/:id" element={<Content />} />
         </Routes>
       </div>
